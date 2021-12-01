@@ -1,12 +1,7 @@
----
-title: "🎄🎄🎄 day 01  sonar sweep 🎄🎄🎄"
-output: github_document
----
-```{r , include = FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-```
+🎄🎄🎄 day 01 sonar sweep 🎄🎄🎄
+================
 
-```{r}
+``` r
 library(tidyverse)
 library(here)
 library(slider)
@@ -19,7 +14,9 @@ depth %>%
   length()
 ```
 
-```{r}
+    ## [1] 1766
+
+``` r
 depth %>% 
   slider::slide_sum(after = 2) %>% 
   diff() %>%
@@ -27,4 +24,4 @@ depth %>%
   length()
 ```
 
-
+    ## [1] 1797
