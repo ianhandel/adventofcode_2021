@@ -10,14 +10,15 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(tidyverse)
 library(here)
 
-course <- read_csv(here("day_02/input.txt"), col_names = "ins") %>%
+course <- tibble(ins = c("forward 5", "down 5", "forward 8", "up 3", "down 8", "forward 2"))
+
+course <- read_csv(here("day_02/input.txt"), col_names = "ins") %>% 
   extract(ins,
     c("dir", "value"),
     "(.*) (\\d+)",
     convert = TRUE
   )
-  separate(ins, c("dir", "value"), " ") %>% 
-  mutate(value = parse_number(value))
+
 
 course %>% 
   group_by(dir) %>% 
@@ -32,8 +33,8 @@ course %>%
   mutate(value = if_else(dir == "up", -value, value)) %>% 
   mutate(aim = cumsum(value * (dir != "forward"))) %>% 
   filter(dir == "forward") %>% 
-  mutate(depth = value * aim) %>% 
-  summarise(sum(value) * sum(depth))
+  mutate(delta_depth = value * aim) %>% 
+  summarise(sum(value) * sum(delta_depth))
   
   
   
