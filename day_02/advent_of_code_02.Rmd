@@ -1,0 +1,44 @@
+---
+title: "🎄🎄🎄 day 02  🎄🎄🎄"
+output: github_document
+---
+```{r , include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+```
+
+```{r}
+library(tidyverse)
+library(here)
+
+course <- read_csv(here("day_02/input.txt"), col_names = "ins") %>%
+  extract(ins,
+    c("dir", "value"),
+    "(.*) (\\d+)",
+    convert = TRUE
+  )
+  separate(ins, c("dir", "value"), " ") %>% 
+  mutate(value = parse_number(value))
+
+course %>% 
+  group_by(dir) %>% 
+  summarise(total = sum(value)) %>% 
+  pivot_wider(names_from = dir, values_from = total) %>% 
+  summarise(forward * (down - up))
+
+```
+
+```{r}
+course %>%
+  mutate(value = if_else(dir == "up", -value, value)) %>% 
+  mutate(aim = cumsum(value * (dir != "forward"))) %>% 
+  filter(dir == "forward") %>% 
+  mutate(depth = value * aim) %>% 
+  summarise(sum(value) * sum(depth))
+  
+  
+  
+  
+  
+  
+```
+
