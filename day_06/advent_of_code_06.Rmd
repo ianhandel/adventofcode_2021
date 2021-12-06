@@ -13,8 +13,6 @@ library(here)
 lant <- read_lines(here("day_06/input.txt")) %>% 
   str_split(",", simplify = TRUE) %>% 
   as.numeric()
-
-lant <- c(3,4,3,1,2)
 ```
 
 ### Part 1

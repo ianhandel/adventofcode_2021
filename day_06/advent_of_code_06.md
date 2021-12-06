@@ -8,8 +8,6 @@ library(here)
 lant <- read_lines(here("day_06/input.txt")) %>% 
   str_split(",", simplify = TRUE) %>% 
   as.numeric()
-
-lant <- c(3,4,3,1,2)
 ```
 
 ### Part 1
@@ -26,7 +24,7 @@ accumulate(1:18, ~fish(.x), .init = lant) %>%
   length()
 ```
 
-    ## [1] 26
+    ## [1] 1749
 
 ### Part 2
 
@@ -47,4 +45,4 @@ accumulate(1:256, ~fish2(.x), .init = n0) %>%
   format(digits = 20)
 ```
 
-    ## [1] "26984457539"
+    ## [1] "1693022481538"
