@@ -1,22 +1,16 @@
----
-title: "🎄🎄🎄 day 03  🎄🎄🎄"
-output: github_document
----
-```{r , include = FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-```
+🎄🎄🎄 day 03 🎄🎄🎄
+================
 
-```{r}
+``` r
 # get input
 
 library(tidyverse)
 library(here)
 
 bin <- read_csv(here("day_03/input.txt"), col_names = "X")$X
-
 ```
 
-```{r}
+``` r
 gamma <- str_extract_all(bin, boundary("character"), simplify = TRUE) %>% 
   apply(2, function(x) round(mean(x == "1"))) %>%
   paste(collapse = "") %>% 
@@ -27,10 +21,4 @@ epsilon <- 2^12 - 1 - gamma
 epsilon * gamma
 ```
 
-
-```{r}
-str_extract_all(bin, boundary("character"), simplify = TRUE) 
-```
-
-
-
+    ## [1] 4006064
