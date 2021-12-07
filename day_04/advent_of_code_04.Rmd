@@ -39,6 +39,8 @@ cards <- cards %>%
   select(-x, -y) %>% 
   arrange(card, line)
 
+# mark any matches and detect winjing lines
+# store last called number too
 mark <- function(cards, call){
   if(any(cards$won)) return(cards)
   
@@ -50,14 +52,17 @@ mark <- function(cards, call){
     mutate(lastcall = call)
 }
 
+# accumulate over all the calls
 cards <- accumulate(calls, mark, .init = cards) %>% 
   last()
 
+# who won?
 winner <- cards %>% 
   filter(won) %>% 
   pull(card) %>% 
   unique()
 
+# get result
 cards %>% 
   filter(card == winner) %>% 
   filter(!called) %>% 
