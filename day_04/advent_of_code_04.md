@@ -1,12 +1,7 @@
----
-title: "🎄🎄🎄 day 04  🎄🎄🎄"
-output: github_document
----
-```{r , include = FALSE}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
-```
+🎄🎄🎄 day 04 🎄🎄🎄
+================
 
-```{r}
+``` r
 library(tidyverse)
 library(here)
 
@@ -62,6 +57,9 @@ cards %>%
   filter(card == winner) %>% 
   filter(!called) %>% 
   summarise(sum(parse_number(value)) * unique(parse_number(lastcall)))
-
 ```
 
+    ## # A tibble: 1 x 1
+    ##   `sum(parse_number(value)) * unique(parse_number(lastcall))`
+    ##                                                         <dbl>
+    ## 1                                                       55770
